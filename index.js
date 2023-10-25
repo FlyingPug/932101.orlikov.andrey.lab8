@@ -1,8 +1,5 @@
-
 const fieldContainer = document.querySelector('.field_container');
 const outputField = document.querySelector('#output_field');
-const fieldList = [];
-
 class Field
 {
     constructor()
@@ -69,15 +66,16 @@ function saveFields()
 {
     let saveText = '{';
 
-    fieldList.forEach((field) => {
-        let name = field.name.value;
-        let number = field.number.value;
-        
+    const fieldContainers = fieldContainer.querySelectorAll('.field');
+
+    fieldContainers.forEach((fieldContainer) => {
+        let name = fieldContainer.querySelector('input[type="text"]').value;
+        let number = fieldContainer.querySelector('input[type="number"]').value;
+
         saveText += `"${name}":"${number}",`;
     });
 
-    if(saveText[saveText.length - 1] == ',')
-    {
+    if (saveText[saveText.length - 1] == ',') {
         saveText = saveText.substr(0, saveText.length - 1);
     }
 
